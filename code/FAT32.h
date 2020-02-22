@@ -85,7 +85,6 @@ typedef union{
 		WORD FileName11_12[2];
 	}L;
 }CATALOG;
-struct Tree;
 typedef struct Tree{
 	vector<Tree> sub;
 	string name;
@@ -99,27 +98,19 @@ public:
 	DiskRW();
 	void Open();
 	void Close();
-	void ReadSector(void* p,int si,int len);
-	void WriteSector(void* p,int si,int len);
 	void CreateFileSystem();
-	int Cluster2Sector(int n);
-	int ReadDir(Tree* pt,int si);
-	void GetLongName(Tree* pt,CATALOG* pc);
-	void GetShortName(Tree* pt,CATALOG* pc);
-	void GetOthers(Tree* pt,CATALOG* pc);
-	void Travel(Tree *pt,TravelFun pf);
 public:
-	HANDLE hDisk;
 	DWORD Fat1StartSector;
-	DWORD Fat2StartSector;
 	DWORD RootStartSector;
-	CATALOG *pCatalog;
 };
 
 extern DiskRW drw;
 extern Tree cata;
 extern char buf[4096];
+
+extern void ReadSector(void* p,int si,int len);
+extern void WriteSector(void* p,int si,int len);
+extern void Travel(Tree *pt,TravelFun pf,int mode);
+extern void ReadDir(Tree* pt);
 extern void Write(Tree* pt);
 extern void Print(Tree* pt);
-extern void _write(const char* name);
-extern void uni2mbs(char* dest,LPCWSTR src);
