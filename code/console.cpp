@@ -1,5 +1,4 @@
-﻿#include "stdafx.h"
-#include "FAT32.h"
+﻿#include "FAT32.h"
 
 int main(){
 	drw.Open();
