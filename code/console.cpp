@@ -3,8 +3,8 @@
 int main(){
 	drw.Open();
 	drw.CreateFileSystem();
-	Travel(&cata,ReadDir,1);
-	Travel(&cata,Print,1);
+	ReadDir(&drw.cata);
+	Travel(&drw.cata,Print,1);
 	system("pause");
     return 0;
 }
